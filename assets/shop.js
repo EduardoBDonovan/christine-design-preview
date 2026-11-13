@@ -13,7 +13,7 @@
   try { const saved = JSON.parse(sessionStorage.getItem(storageKey)); if (Array.isArray(saved)) bag = saved.filter(valid).slice(0,50); } catch (_) { /* Memory-only bag is available if storage is unavailable. */ }
   const price = item => item.kind === 'sample' ? 20 : item.kind.startsWith('case-') ? 24 : (item.kind === 'spray' ? 52 : 55) + (item.color === 'none' ? 0 : 10);
   const name = item => item.kind === 'sample' ? sets.find(s => s.id === item.id).name + ' Trio' : item.kind.startsWith('case-') ? 'Luxe ' + (item.kind === 'case-spray' ? 'Fragrance' : 'Candle') + ' Case' : catalog.find(p => p.id === item.id).name + (item.kind === 'spray' ? ' Home + Body' : ' Candle');
-  const image = item => item.kind === 'sample' ? 'samples-trio' : item.kind.startsWith('case-') ? `case-${item.kind.slice(5)}-${item.color}` : `${item.kind}-${item.id}`;
+  const image = item => item.kind === 'sample' ? 'samples-trio' : item.kind.startsWith('case-') ? `case-${item.kind.slice(5)}-${item.color}-cutout` : `${item.kind}-${item.id}`;
   const option = item => item.kind === 'sample' ? '3 mini sprays' : item.color === 'none' ? 'No case' : title(item.color) + (item.kind.startsWith('case-') ? '' : ' case');
   const key = item => `${item.kind}:${item.id}:${item.color}`;
   function save() {
@@ -36,13 +36,15 @@
     bag.forEach(item => {
       const row=document.createElement('div');row.className='shop-bag-item';
       const photo=document.createElement('img');photo.src=assets+'catalog/'+image(item)+'.webp';photo.alt=name(item);
+      if(item.kind.startsWith('case-')){photo.className='case-cutout';photo.dataset.casePhoto=`case-${item.kind.slice(5)}-${item.color}`;}
+      const frame=document.createElement('span');frame.className='bag-photo';frame.append(photo);
       const details=document.createElement('div');
       const label=document.createElement('h3');label.textContent=name(item);
       const sub=document.createElement('p');sub.textContent=`${option(item)} · Qty ${item.qty}`;
       const cost=document.createElement('span');cost.textContent=money(price(item)*item.qty);
       const remove=document.createElement('button');remove.textContent='Remove';remove.setAttribute('aria-label',`Remove ${name(item)} ${option(item)}`);
       remove.addEventListener('click',()=>{bag=bag.filter(x=>key(x)!==key(item));save();$('#bag-dialog [data-close]').focus();$('#announcement').textContent=`${name(item)} removed.`;});
-      details.append(label,sub,cost,remove);row.append(photo,details);container.append(row);
+      details.append(label,sub,cost,remove);row.append(frame,details);container.append(row);
     });
     $('#bag-total').textContent='Subtotal '+money(bag.reduce((n,x)=>n+price(x)*x.qty,0));
   }
@@ -63,8 +65,9 @@
     let format=params.get('type')==='spray'?'spray':'candle';
     let color=isCase?'green':'none';
     function update() {
-      const asset=isCase?`case-${format}-${color}`:`${format}-${product.id}`;
+      const asset=isCase?`case-${format}-${color}-cutout`:`${format}-${product.id}`;
       $('.product-main-image').src=assets+'catalog/'+asset+'.webp';
+      if(isCase){$('.product-main-image').classList.add('case-cutout');$('.product-main-image').dataset.casePhoto=`case-${format}-${color}`;}
       $('.product-main-image').alt=isCase?`${title(color)} Luxe ${format==='spray'?'Fragrance':'Candle'} Case`:product.name+' '+(format==='spray'?'Home + Body Fragrance':'candle');
       $('#case-label').textContent=color==='none'?'No case':title(color);
       $$('[data-case]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.case===color)));
@@ -76,7 +79,7 @@
         $('#product-price').textContent=money((format==='spray'?52:55)+(color==='none'?0:10));
         $('#product-scent-link').href=themeRoot+'scents/'+product.id+'/';
         $('#selected-case-photo').hidden=color==='none';
-        if(color!=='none'){$('#selected-case-photo img').src=assets+`catalog/case-${format}-${color}.webp`;$('#selected-case-photo img').alt=title(color)+' selected case';$('#selected-case-caption').textContent=title(color)+' case · +$10';}
+        if(color!=='none'){$('#selected-case-photo img').src=assets+`catalog/case-${format}-${color}-cutout.webp`;$('#selected-case-photo img').alt=title(color)+' selected case';$('#selected-case-photo img').dataset.casePhoto=`case-${format}-${color}`;$('#selected-case-caption').textContent=title(color)+' case · +$10';}
         document.title=product.name+' '+(format==='spray'?'Fragrance':'Candle')+' · Design preview';
         const url=new URL(location.href);url.searchParams.set('scent',product.id);url.searchParams.set('type',format);history.replaceState(null,'',url);
       }
