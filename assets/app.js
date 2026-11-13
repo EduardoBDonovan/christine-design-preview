@@ -49,15 +49,26 @@
     openDialog('property-dialog', button);
   }));
   if ($('#reno-dialog')) {
+    let activeProject;
     const setStage = stage => {
       const label = stage === 'before' ? 'Before' : 'After';
-      $('#reno-dialog-image').src = `../assets/kitchen-${stage}-1536.webp`;
-      $('#reno-dialog-image').alt = `${label}: illustrative kitchen`;
+      const source = activeProject.querySelector(`[data-reno-photo="${stage}"] img`);
+      const title = activeProject.dataset.renoTitle;
+      const photo = $('#reno-dialog-image');
+      photo.src = source.src;
+      photo.className = source.classList.contains('reno-diptych') ? 'reno-diptych' : '';
+      photo.alt = `${label}: illustrative ${title.toLowerCase()}`;
+      $('#reno-dialog-visual').dataset.stage = stage;
+      $('#reno-dialog-project').textContent = title;
       $('#reno-dialog-title').textContent = label;
-      $('#reno-lightbox-status').textContent = `${label} photo shown.`;
+      $('#reno-lightbox-status').textContent = `${title}: ${label.toLowerCase()} photo shown.`;
       $$('[data-reno-lightbox-stage]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.renoLightboxStage === stage)));
     };
-    $$('[data-reno-photo]').forEach(b => b.addEventListener('click', () => { setStage(b.dataset.renoPhoto); openDialog('reno-dialog', b); }));
+    $$('[data-reno-photo]').forEach(b => b.addEventListener('click', () => {
+      activeProject = b.closest('.transformation');
+      setStage(b.dataset.renoPhoto);
+      openDialog('reno-dialog', b);
+    }));
     $$('[data-reno-lightbox-stage]').forEach(b => b.addEventListener('click', () => setStage(b.dataset.renoLightboxStage)));
   }
 })();

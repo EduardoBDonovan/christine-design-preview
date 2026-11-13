@@ -4,7 +4,7 @@ Static GitHub Pages concepts for Joejo + Nebria and CKlein Properties. No build 
 
 - `joejo-light/` and `joejo-dark/`: Daylight and Evening storefronts, each with candle and Home + Body catalogs, 15 scent pages, Luxe Cases, sample sets and a product configurator.
 - `sold/`: concise photo-led portfolio with property enlargement and filters.
-- `renovations/`: a single staggered Before/After photo pair with an enlarged comparison dialog. Older `?view=` links still open this simplified page.
+- `renovations/`: three staggered Before/After projects (kitchen, bathroom and living room) with project links and an enlarged comparison dialog. Older `?view=` links still open this simplified page.
 
 ## Preview behavior
 
@@ -18,7 +18,7 @@ The bag uses session storage across preview pages and themes, with memory-only f
 
 Product names, signature notes, prices and case options reflect the public Joejo + Nebria catalog reviewed November 12, 2026. They are a static design snapshot, not live stock or a store checkout. Scent-family groupings are editorial navigation choices for this preview.
 
-Catalog product, case and sample photos are from the existing Joejo + Nebria site, bundled locally as WebP. Homepage hero settings/products and fictional real-estate images were generated earlier for these concepts. Property/project content is illustrative and is labeled in the UI. Actual closing and renovation photographs would replace it in a finished site.
+Catalog product, case and sample photos are from the existing Joejo + Nebria site, bundled locally as WebP. Homepage hero settings/products and fictional real-estate images were generated for these concepts. Bathroom and living-room before/after pairs are new AI-generated illustrative assets; each is displayed as two CSS-clipped halves without altering the source image. Property/project content is illustrative and is labeled in the UI. Actual closing and renovation photographs would replace it in a finished site.
 
 Public source references: [Candles](https://joejonebria.com/candles/), [Home + Body](https://joejonebria.com/home-body-fragrance-spray/), [Luxe Cases](https://joejonebria.com/luxe-cases/), [Samples](https://joejonebria.com/fragrance-samples/).
 
