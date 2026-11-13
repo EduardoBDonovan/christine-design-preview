@@ -62,7 +62,8 @@
     const product=catalog.find(p=>p.id===params.get('scent'))||catalog.find(p=>p.id==='bali');
     let format=params.get('type')==='spray'?'spray':'candle';
     let color=isCase?'green':'none';
-    function update() {
+    const packing=!isCase&&window.JNCaseMotion ? window.JNCaseMotion($('#selected-case-photo')) : null;
+    function update(animate=false) {
       const asset=isCase?`case-${format}-${color}`:`${format}-${product.id}`;
       $('.product-main-image').src=assets+'catalog/'+asset+'.webp';
       $('.product-main-image').alt=isCase?`${title(color)} Luxe ${format==='spray'?'Fragrance':'Candle'} Case`:product.name+' '+(format==='spray'?'Home + Body Fragrance':'candle');
@@ -75,19 +76,24 @@
         $('#product-breadcrumb').textContent='/ '+product.name;
         $('#product-price').textContent=money((format==='spray'?52:55)+(color==='none'?0:10));
         $('#product-scent-link').href=themeRoot+'scents/'+product.id+'/';
-        $('#selected-case-photo').hidden=color==='none';
-        if(color!=='none'){$('#selected-case-photo img').src=assets+`catalog/case-${format}-${color}.webp`;$('#selected-case-photo img').alt=title(color)+' selected case';$('#selected-case-caption').textContent=title(color)+' case · +$10';}
+        if(packing) packing.set({format,color,name:product.name},animate);
+        else {
+          $('#selected-case-photo').hidden=color==='none';
+          if(color!=='none'){$('#selected-case-photo img').src=assets+`catalog/case-${format}-${color}.webp`;$('#selected-case-photo img').alt=title(color)+' selected case';$('#selected-case-caption').textContent=title(color)+' case · +$10';}
+        }
         document.title=product.name+' '+(format==='spray'?'Fragrance':'Candle')+' · Design preview';
         const url=new URL(location.href);url.searchParams.set('scent',product.id);url.searchParams.set('type',format);history.replaceState(null,'',url);
       }
       $('#purchase-feedback').textContent='';
     }
-    $$('[data-case]').forEach(b=>b.addEventListener('click',()=>{color=b.dataset.case;update();}));
-    $$('[data-format], [data-case-format]').forEach(b=>b.addEventListener('click',()=>{format=b.dataset.format||b.dataset.caseFormat;update();}));
-    $('[data-add-selection]').addEventListener('click',()=>{
+    $$('[data-case]').forEach(b=>b.addEventListener('click',event=>{color=b.dataset.case;update(event.detail>0);}));
+    $$('[data-format], [data-case-format]').forEach(b=>b.addEventListener('click',event=>{format=b.dataset.format||b.dataset.caseFormat;update(event.detail>0);}));
+    $('[data-add-selection]').addEventListener('click',event=>{
       const qty=$('#product-qty');if(!qty.reportValidity())return;
       const item={id:isCase?'case':product.id,kind:isCase?'case-'+format:format,color,qty:Number(qty.value)};
-      add(item);$('#purchase-feedback').textContent=`Added: ${name(item)} · ${option(item)}.`;
+      add(item);
+      if(event.detail>0&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const icon=document.querySelector('.bag-button svg');icon?.getAnimations().forEach(a=>a.cancel());icon?.animate([{transform:'translateY(0)'},{transform:'translateY(-3px)'},{transform:'translateY(0)'}],{duration:280,easing:'cubic-bezier(.23,1,.32,1)'});}
+      $('#purchase-feedback').textContent=`Added: ${name(item)} · ${option(item)}.`;
     });
     update();
   }
