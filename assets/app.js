@@ -112,4 +112,66 @@
   }
   $$('[data-compare]').forEach(button => button.addEventListener('click', () => setComparison(button.dataset.compare)));
   if ($('.comparison') && matchMedia('(max-width:760px)').matches) setComparison('after', false);
+
+  if ($('[data-renovation-mode]')) {
+    const stages = {
+      before: {label:'Before', alt:'Original kitchen with oak cabinetry, beige tile counters, and a white range', caption:'The original room, with oak cabinetry and tile counters.'},
+      after: {label:'After', alt:'Illustrative finished kitchen with cream cabinets, pale stone counters, and an oak island', caption:'A lighter palette, warm wood, and softer lighting.'}
+    };
+    const modeDescriptions = {
+      pair:'See both stages together. Select either photograph for a closer look.',
+      toggle:'Tap Before or After to compare the same view at full size.',
+      story:'Explore the finished space, the starting point, and the details in between.'
+    };
+    let currentStage = 'after';
+    const showMode = (mode, updateUrl = true) => {
+      if (!['pair','toggle','story'].includes(mode)) return;
+      $$('[data-renovation-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.renovationMode === mode)));
+      $$('[data-renovation-view]').forEach(panel => { panel.hidden = panel.dataset.renovationView !== mode; });
+      $('#reno-mode-description').textContent = modeDescriptions[mode];
+      if (updateUrl) {
+        const url = new URL(location.href);
+        url.searchParams.set('view', mode);
+        history.replaceState(null, '', url);
+      }
+    };
+    $$('[data-renovation-mode]').forEach(button => button.addEventListener('click', () => showMode(button.dataset.renovationMode)));
+    const requestedMode = new URLSearchParams(location.search).get('view');
+    if (requestedMode) showMode(requestedMode, false);
+    const selectStage = phase => {
+      currentStage = phase;
+      $('#reno-toggle-image').src = `../assets/kitchen-${phase}-1536.webp`;
+      $('#reno-toggle-image').alt = stages[phase].alt;
+      $('#reno-toggle-label').textContent = stages[phase].label;
+      $('#reno-toggle-caption').textContent = stages[phase].caption;
+      $$('[data-reno-stage]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.renoStage === phase)));
+      announce(`${stages[phase].label} photograph shown.`);
+    };
+    $$('[data-reno-stage]').forEach(button => button.addEventListener('click', () => selectStage(button.dataset.renoStage)));
+    const showEnlargedStage = phase => {
+      $('#reno-dialog-image').src = `../assets/kitchen-${phase}-1536.webp`;
+      $('#reno-dialog-image').alt = stages[phase].alt;
+      $('#reno-dialog-title').textContent = stages[phase].label;
+      $('#reno-lightbox-status').textContent = `${stages[phase].label} photograph shown.`;
+      $$('[data-reno-lightbox-stage]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.renoLightboxStage === phase)));
+    };
+    $$('[data-reno-photo]').forEach(button => button.addEventListener('click', () => {
+      showEnlargedStage(button.dataset.renoPhoto);
+      openDialog('reno-dialog', button);
+    }));
+    $('[data-reno-enlarge-current]').addEventListener('click', event => {
+      showEnlargedStage(currentStage);
+      openDialog('reno-dialog', event.currentTarget);
+    });
+    $$('[data-reno-lightbox-stage]').forEach(button => button.addEventListener('click', () => showEnlargedStage(button.dataset.renoLightboxStage)));
+    const detailText = {
+      cabinetry:'Cream cabinet fronts brighten the room, while a natural oak island adds warmth.',
+      surfaces:'Pale stone replaces the tiled counters and continues onto the backsplash for a calmer, more continuous surface.',
+      lighting:'Two simple pendant lights replace the larger ceiling fixture and give the island a clearer focal point.'
+    };
+    $$('[data-reno-detail]').forEach(button => button.addEventListener('click', () => {
+      $$('[data-reno-detail]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+      $('#reno-detail-text').textContent = detailText[button.dataset.renoDetail];
+    }));
+  }
 })();

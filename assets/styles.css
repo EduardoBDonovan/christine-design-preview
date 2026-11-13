@@ -17,8 +17,8 @@ dialog{border:0;padding:0;width:min(930px,calc(100% - 40px));max-height:90dvh;ba
   .jn .jn-brand{font-size:clamp(23px,6.5vw,27px);min-width:0}
   .jn .jn-brand small{margin-top:5px;font-size:7px;letter-spacing:.25em}
   .jn .hero-light,.jn .hero-dark{display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:0;padding:66px 16px 32px;min-height:360px;position:relative;isolation:isolate}
-  .jn .hero-light{background:radial-gradient(ellipse at 76% 58%,#d6b99555,transparent 62%),#f0e7d9}
-  .jn .hero-dark{background:radial-gradient(ellipse at 78% 55%,#86502040,transparent 60%),#211a14}
+  .jn .hero-light{background:#f0e7d9 url('hero-light-setting-768.webp') center bottom/cover no-repeat;background-image:image-set(url('hero-light-setting-768.webp') 1x,url('hero-light-setting-1536.webp') 2x)}
+  .jn .hero-dark{background:#211a14 url('hero-dark-setting-768.webp') center bottom/cover no-repeat;background-image:image-set(url('hero-dark-setting-768.webp') 1x,url('hero-dark-setting-1536.webp') 2x)}
   .jn .hero-light .hero-photo,.jn .hero-dark .hero-photo{position:relative;inset:auto;order:1;height:auto;min-height:0;overflow:visible}
   .jn .hero-photo picture{display:flex;align-items:center;justify-content:center;height:auto}
   .jn .hero-photo img{width:100%;height:auto;aspect-ratio:auto;max-height:310px;object-fit:contain;filter:drop-shadow(0 14px 12px #26140b26)}
@@ -29,6 +29,7 @@ dialog{border:0;padding:0;width:min(930px,calc(100% - 40px));max-height:90dvh;ba
   .jn .hero-copy h1,.jn .hero-dark .hero-copy h1{font-size:clamp(27px,7.7vw,40px);line-height:1.06;letter-spacing:-.02em;max-width:none;width:100%;text-wrap:balance}
   .jn .hero-copy .desktop-break{display:none}
   .jn .hero-copy p:not(.eyebrow){font-size:13px;line-height:1.5;margin-top:12px;max-width:18ch;text-wrap:balance}
+  .jn:not(.dark) .hero-copy p:not(.eyebrow){color:#4c4c41}
   .jn .hero-copy .button{margin-top:18px;min-height:44px;padding:11px;gap:8px;font-size:10.5px;letter-spacing:.03em}
   .jn .cta-desktop{display:none}
   .jn .cta-mobile{display:inline}
@@ -41,5 +42,81 @@ dialog{border:0;padding:0;width:min(930px,calc(100% - 40px));max-height:90dvh;ba
   .jn .section-head p{line-height:1.5}
   .jn .story-section>div{padding:32px 24px}
   .jn .dialog-copy h2{text-wrap:balance}
+}
+.renovations-page .page-intro{padding-top:52px;padding-bottom:36px}
+.renovation-project .project-head{align-items:center;margin:0 0 24px}
+.reno-mode-picker{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);padding:5px;gap:5px;background:#efeee7}
+.reno-mode-picker button{min-height:54px;padding:12px 16px;text-align:left;font-size:13px;display:flex;align-items:center;gap:14px;transition:background .2s}
+.reno-mode-picker button>span{font:italic 20px var(--serif);opacity:.65}
+.reno-mode-picker button[aria-pressed=true]{background:var(--olive);color:white}
+.reno-mode-picker button:hover{box-shadow:inset 0 0 0 1px var(--olive)}
+.reno-mode-description{font-size:13px;color:var(--muted);padding:16px 0 22px;min-height:59px;max-width:none}
+.reno-pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.reno-photo-button{position:relative;display:block;padding:0;width:100%;background:#e5dfd3;cursor:zoom-in;text-align:left}
+.reno-photo-button img{aspect-ratio:3/2;object-fit:contain}
+.photo-expand{position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:36px;height:36px;background:#f8f6f0ed;color:var(--ink);font-size:22px;border-radius:50%}
+.reno-pair figcaption{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:14px;font-size:12px;color:var(--muted)}
+.reno-stage-label{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink)}
+.reno-single{max-width:1000px;margin:auto}
+.reno-stage-picker{display:flex;width:fit-content;padding:4px;background:#e8e7dd;margin:0 auto 20px;gap:4px}
+.reno-stage-picker button{min-width:110px;min-height:44px;padding:10px 20px;font-size:12px}
+.reno-stage-picker button[aria-pressed=true]{background:var(--olive);color:white}
+.reno-stage-picker button:hover{box-shadow:inset 0 0 0 1px var(--olive)}
+.reno-image-label{position:absolute;top:16px;left:16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;background:var(--paper);color:var(--ink)}
+.reno-single figcaption{font-size:13px;color:var(--muted);padding-top:13px;text-align:center}
+.reno-story-lead{display:grid;grid-template-columns:1.55fr 1fr;background:#ebe9df;align-items:stretch}
+.reno-story-lead>figure{display:flex;align-items:center}
+.reno-story-copy{padding:36px}
+.reno-story-copy h3{font-size:37px;margin:15px 0 20px}
+.reno-story-copy>p:not(.eyebrow){font-size:14px;color:var(--muted)}
+.reno-detail-picker{display:flex;gap:5px;flex-wrap:wrap;padding:20px 0 12px}
+.reno-detail-picker button{min-height:44px;padding:9px 12px;border-bottom:1px solid transparent;font-size:11px}
+.reno-detail-picker button[aria-pressed=true]{border-color:var(--olive);background:#dcded1;color:var(--ink)}
+.reno-detail-text{min-height:100px;line-height:1.7}
+.reno-story-origin{display:grid;grid-template-columns:36% 1fr;gap:45px;align-items:center;margin-top:40px;padding-top:40px;border-top:1px solid var(--line)}
+.reno-story-origin h3{font-size:34px;margin:13px 0 18px}
+.reno-story-origin p:not(.eyebrow){font-size:14px;color:var(--muted);max-width:48ch}
+.reno-disclosure{margin-top:25px;padding-top:18px;border-top:1px solid var(--line)}
+.reno-lightbox{width:min(1200px,calc(100% - 40px));max-height:94dvh}
+.reno-lightbox-head{padding:25px 70px 20px 28px}
+.reno-lightbox-head h2{font-size:32px;margin-top:8px}
+.reno-lightbox>img{max-height:65dvh;object-fit:contain;width:100%;height:auto;background:#e4e2d9}
+.reno-lightbox-bottom{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px 28px}
+.reno-lightbox-bottom .reno-stage-picker{margin:0}
+.reno-lightbox-bottom p{font-size:11px;color:var(--muted)}
+@media(max-width:1050px){.reno-story-copy{padding:24px}.reno-story-copy h3{font-size:30px}.reno-detail-picker{gap:0}.reno-detail-picker button{padding:9px 8px}}
+@media(max-width:760px){
+  .renovations-page .page-intro{padding:32px 24px 30px;gap:18px}
+  .renovations-page .page-intro h1{font-size:43px;line-height:1.05;text-wrap:balance}
+  .renovations-page .page-intro p:not(.eyebrow){font-size:14px}
+  .renovation-project .project-head{align-items:flex-start;gap:8px;margin-bottom:18px}
+  .renovation-project .project-head .subtle{font-size:12px}
+  .reno-mode-picker{gap:3px;padding:4px}
+  .reno-mode-picker button{min-height:58px;padding:9px 5px;text-align:center;justify-content:center;flex-direction:column;gap:5px;font-size:10px;line-height:1.3}
+  .reno-mode-picker button>span{font-size:16px}
+  .reno-mode-description{font-size:12px;line-height:1.5;padding:13px 0 18px;min-height:67px}
+  .reno-pair{gap:12px}
+  .reno-pair figcaption{align-items:flex-start;flex-direction:column;gap:4px;font-size:11px;margin-top:11px}
+  .reno-stage-label{font-size:10px}
+  .photo-expand{width:28px;height:28px;right:7px;bottom:7px;font-size:18px}
+  .reno-image-label{top:10px;left:10px;padding:5px 10px;font-size:9px}
+  .reno-stage-picker button{min-width:105px}
+  .reno-single figcaption{font-size:12px}
+  .reno-story-lead{grid-template-columns:1fr}
+  .reno-story-copy{padding:25px}
+  .reno-story-copy h3{font-size:32px}
+  .reno-story-copy>p:not(.eyebrow){font-size:13px}
+  .reno-detail-text{min-height:88px}
+  .reno-story-origin{grid-template-columns:1fr;gap:22px;margin-top:27px;padding-top:27px}
+  .reno-story-origin>figure{width:72%}
+  .reno-story-origin h3{font-size:30px}
+  .reno-story-origin p:not(.eyebrow){font-size:13px}
+  .reno-lightbox{width:calc(100% - 20px);max-height:94dvh}
+  .reno-lightbox-head{padding:25px 54px 18px 20px}
+  .reno-lightbox-head .eyebrow{font-size:9px}
+  .reno-lightbox-head h2{font-size:28px}
+  .reno-lightbox>img{max-height:60dvh}
+  .reno-lightbox-bottom{flex-direction:column;gap:12px;padding:18px 15px}
+  .reno-lightbox-bottom p{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}

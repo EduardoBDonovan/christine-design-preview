@@ -5,7 +5,7 @@ Four responsive, frontend-only concepts for Joejo + Nebria and CKlein Properties
 - `joejo-light/`: a light fragrance storefront
 - `joejo-dark/`: a darker fragrance storefront
 - `sold/`: a sample closings portfolio with filters and property previews
-- `renovations/`: a clear before/after comparison with three view controls
+- `renovations/`: three renovation presentations: photo pair, tap-to-compare, and project story
 
 Open `index.html` through a local static server, or deploy the root to GitHub Pages. There is no build step or package installation.
 
@@ -16,6 +16,8 @@ Menus, dialogs, example property filters, and before/after controls work locally
 All photographs are generated illustrations. Product descriptions and property/project content are examples, not current inventory, actual transactions, or completed client work. The UI labels this explicitly. Production copy and imagery must be supplied and reviewed separately.
 
 Images were generated with the built-in image generation tool and compressed to two WebP sizes. They are bundled locally; there are no runtime third-party asset requests.
+
+The renovation preview accepts `?view=pair`, `?view=toggle`, or `?view=story` for direct links. Each view includes enlarged photographs and explicit Before/After labels. The story view includes selectable finish and lighting notes.
 
 ## Hosting
 
