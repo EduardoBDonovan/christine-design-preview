@@ -120,3 +120,9 @@ dialog{border:0;padding:0;width:min(930px,calc(100% - 40px));max-height:90dvh;ba
   .reno-lightbox-bottom p{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Vector arrows avoid platform-dependent emoji rendering. */
+.ui-arrow{display:inline-block;width:18px;height:18px;flex:none;vertical-align:-.18em}
+.preview-bar .ui-arrow{width:13px;height:13px;margin-right:5px}
+.photo-expand .ui-arrow{width:17px;height:17px}
+.property-arrow .ui-arrow{width:20px;height:20px}

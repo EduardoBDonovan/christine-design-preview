@@ -30,7 +30,7 @@
     const container = $('#bag-items');container.replaceChildren();
     if (!bag.length) {
       const p = document.createElement('p');p.className='bag-empty';p.textContent='Your bag is empty.';
-      const link = document.createElement('a');link.className='text-link';link.href=themeRoot+'candles/';link.textContent='Explore candles ↗';
+      const link = document.createElement('a');link.className='text-link';link.href=themeRoot+'candles/';link.innerHTML='Explore candles <svg class="ui-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg>';
       container.append(p,link);$('#bag-total').textContent='';return;
     }
     bag.forEach(item => {
