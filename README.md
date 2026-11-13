@@ -1,30 +1,27 @@
 # Website design previews
 
-Four responsive, frontend-only concepts for Joejo + Nebria and CKlein Properties.
+Static GitHub Pages concepts for Joejo + Nebria and CKlein Properties. No build step, package installation, database or production-site integration.
 
-- `joejo-light/`: a light fragrance storefront
-- `joejo-dark/`: a darker fragrance storefront
-- `sold/`: a sample closings portfolio with filters and property previews
-- `renovations/`: three renovation presentations: photo pair, tap-to-compare, and project story
-
-Open `index.html` through a local static server, or deploy the root to GitHub Pages. There is no build step or package installation.
+- `joejo-light/` and `joejo-dark/`: Daylight and Evening storefronts, each with candle and Home + Body catalogs, 15 scent pages, Luxe Cases, sample sets and a product configurator.
+- `sold/`: concise photo-led portfolio with property enlargement and filters.
+- `renovations/`: a single staggered Before/After photo pair with an enlarged comparison dialog. Older `?view=` links still open this simplified page.
 
 ## Preview behavior
 
-Menus, dialogs, example property filters, and before/after controls work locally in the browser. A sample shopping bag exists only in memory within the current page and resets on navigation. There are no payments, contact submissions, analytics, cookies, database, or production-site integrations.
+Candle and fragrance pages support six case colors or no case, format switching, quantity, price changes and a preview bag. The Luxe Cases page supports both case sizes. Scents can be filtered by family and searched by name or note. Sample sets can be added to the bag.
 
-All photographs are generated illustrations. Product descriptions and property/project content are examples, not current inventory, actual transactions, or completed client work. The UI labels this explicitly. Production copy and imagery must be supplied and reviewed separately.
+The bag uses session storage across preview pages and themes, with memory-only fallback if storage is unavailable. It contains only selected catalog IDs, colors and quantities. There are no payments, contact submissions, analytics, accounts, cookies or external application requests.
 
-Images were generated with the built-in image generation tool and compressed to two WebP sizes. They are bundled locally; there are no runtime third-party asset requests.
+## Content and images
 
-The renovation preview accepts `?view=pair`, `?view=toggle`, or `?view=story` for direct links. Each view includes enlarged photographs and explicit Before/After labels. The story view includes selectable finish and lighting notes.
+Product names, signature notes, prices and case options reflect the public Joejo + Nebria catalog reviewed November 12, 2026. They are a static design snapshot, not live stock or a store checkout. Scent-family groupings are editorial navigation choices for this preview.
 
-## Hosting
+Catalog product, case and sample photos are from the existing Joejo + Nebria site, bundled locally as WebP. Homepage hero settings/products and fictional real-estate images were generated earlier for these concepts. Property/project content is illustrative and is labeled in the UI. Actual closing and renovation photographs would replace it in a finished site.
 
-Deploy the `main` branch root on GitHub Pages. `.nojekyll` keeps this a static deployment. Relative asset and navigation paths support the `/christine-design-preview/` project path. The custom 404 return link uses that project path.
+Public source references: [Candles](https://joejonebria.com/candles/), [Home + Body](https://joejonebria.com/home-body-fragrance-spray/), [Luxe Cases](https://joejonebria.com/luxe-cases/), [Samples](https://joejonebria.com/fragrance-samples/).
 
-Search indexing is discouraged with `noindex` metadata and `robots.txt`. This is a public preview, not an access control mechanism.
+## Hosting and local review
 
-## Local review
+GitHub Pages serves the `main` branch root. `.nojekyll` keeps it static, and relative paths support `/christine-design-preview/`. `robots.txt` and noindex metadata discourage indexing; the preview is public.
 
-Run `python3 -m http.server 4173 --bind 127.0.0.1` in this folder. Review at 390×844 and 1440×900. Local QA artifacts and asset-generation prompts are kept in the ignored `review/` directory and are not published.
+Run `python3 -m http.server 4173 --bind 127.0.0.1` here to review locally. Current HTML/CSS/JS is authoritative. Historical one-time generation scripts in ignored `review/` must not be rerun over the reviewed pages. QA screenshots, asset provenance and evidence remain in that ignored directory.
