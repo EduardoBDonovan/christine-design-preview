@@ -6,6 +6,12 @@ Static GitHub Pages concepts for Joejo + Nebria and CKlein Properties. No build 
 - `sold/`: concise photo-led portfolio with property enlargement and filters.
 - `renovations/`: three staggered Before/After projects (kitchen, bathroom and living room) with project links and an enlarged comparison dialog. Older `?view=` links still open this simplified page.
 
+## Original-scope alternatives
+
+`current-sites/joejo/` and `current-sites/cklein/` use actual screenshots captured November 13, 2026, with optional HTML/CSS annotations. They preserve the current site appearance rather than reconstructing or redesigning it. CKlein includes a desktop/mobile Sales view and a review-only renovation detail; the two new closing entries are described at their intended insertion point, not shown as already published. The original quote is $300 for review plus both closing entries. The free Joejo + Nebria Askka license/preview-feasibility check includes no storefront design implementation. These pages do not claim an audit or safe demo import has been completed.
+
+Only public-facing screenshot assets are bundled. Raw source captures, asset manifests, correspondence and MLS information remain in ignored local review files. No WordPress/admin code, analytics, forms, account sessions or MLS private remarks are published.
+
 ## Preview behavior
 
 Candle and fragrance pages support six case colors or no case, format switching, quantity, price changes and a preview bag. The Luxe Cases page supports both case sizes. Scents can be filtered by family and searched by name or note. Sample sets can be added to the bag.
