@@ -10,7 +10,7 @@ Static GitHub Pages concepts for Joejo + Nebria and CKlein Properties. No build 
 
 Candle and fragrance pages support six case colors or no case, format switching, quantity, price changes and a preview bag. The Luxe Cases page supports both case sizes. Scents can be filtered by family and searched by name or note. Sample sets can be added to the bag.
 
-The product configurator includes a lightweight SVG packing illustration: selecting a case opens it, lowers the candle or fragrance inside and closes the lid. The illustration follows the chosen color and scent; Replay repeats it. Keyboard input and reduced-motion preferences show the final state immediately. The illustration is conceptual, while the main product photos remain the current catalog images. Action arrows use inline vectors for consistent rendering across devices.
+Case selection shows the actual catalog case photograph, selected color and price. Catalog selectors use compact underline tabs and a single search field across both themes. Decorative sequence numbers have been removed from the concept tiles, renovations and scent lists. Action arrows use inline vectors for consistent rendering across devices.
 
 The bag uses session storage across preview pages and themes, with memory-only fallback if storage is unavailable. It contains only selected catalog IDs, colors and quantities. There are no payments, contact submissions, analytics, accounts, cookies or external application requests.
 
