@@ -33,3 +33,7 @@ Public source references: [Candles](https://joejonebria.com/candles/), [Home + B
 GitHub Pages serves the `main` branch root. `.nojekyll` keeps it static, and relative paths support `/christine-design-preview/`. `robots.txt` and noindex metadata discourage indexing; the preview is public.
 
 Run `python3 -m http.server 4173 --bind 127.0.0.1` here to review locally. Current HTML/CSS/JS is authoritative. Historical one-time generation scripts in ignored `review/` must not be rerun over the reviewed pages. QA screenshots, asset provenance and evidence remain in that ignored directory.
+
+## Current-site recommendations
+
+The `current-sites/` views use actual screenshots captured November 13, 2026, with separate desktop and mobile suggestions for six Joejo + Nebria page types and CKlein Sales/renovations. Select a page, choose a device, and select any note to locate the relevant area. The original quote is summarized once in a collapsed disclosure; recommendations are not restricted by implementation scope. No live WordPress changes are made.
